@@ -1,6 +1,7 @@
 import requests
 from tkinter import *
 
+
 def request():
     api_key = "4f11d7752117d41f67948b27dd410e38"
     city = entry.get()
@@ -13,21 +14,41 @@ def request():
 
     result['text'] = f'{temp: .0f}ºC'
 
-color_back = "#B0E0E6"
+    if temp < 16:
+        window.config(bg=col1)
+        text1.config(bg=col1)
+        text2.config(bg=col1)
+        result.config(bg=col1)
+    elif temp < 25:
+        window.config(bg=col2)
+        text1.config(bg=col2)
+        text2.config(bg=col2)
+        result.config(bg=col2)
+    else:
+        window.config(bg=col3)
+        text1.config(bg=col3)
+        text2.config(bg=col3)
+        result.config(bg=col3)
+
+
+col0 = "#D8BFD8"
+col1 = "#1E90FF"
+col2 = "#FFD700"
+col3 = "#FF4500"
 
 window = Tk()
 window.title("Previsão do Tempo")
 window.geometry("313x95")
-window.config(bg=color_back)
+window.config(bg=col0)
 
 text1 = Label(window, text="Cidade:")
 text1.grid(column=0, row=0)
-text1.config(bg=color_back)
+text1.config(bg=col0)
 text1.place(x=3, y=3)
 
 text2 = Label(window, text="Temperatura:")
 text2.grid(column=0, row=1)
-text2.config(bg=color_back)
+text2.config(bg=col0)
 text2.place(x=3, y=27)
 
 button = Button(window, text="Pesquisar", command=request)
@@ -40,7 +61,7 @@ entry.place(x=53, y=5)
 
 result = Label(window)
 result.grid(column=1, row=1)
-result.config(bg=color_back)
+result.config(bg=col0)
 result.place(x=75, y=27)
 
 window.mainloop()
